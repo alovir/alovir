@@ -1,0 +1,49 @@
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+int buscaBinaria(int vetor[],int n,int valor)
+{
+    int i = 0;
+	int f = n-1;
+	int meio;
+	while (i<=f) {
+		meio = (i+f)/2;
+		if (vetor[meio]==valor)
+			return meio;
+		else {
+			if (valor>vetor[meio])
+				i=meio+1;
+			else
+				f=meio-1;
+		}
+	}
+	return -1;
+}
+
+int main(){
+
+    int n, valor;
+    cout<<"informe o valor de N:";
+    cin>>n;
+    int *vetor = (int*)malloc(sizeof(int)*n);
+
+    for (int i=0; i<n; i++)
+    {
+        cout<<"informe o valor de V1["<<i<<"]: ";
+        cin>>vetor[i];
+    }
+
+    cout<<"informe o valor a ser buscado: ";
+    cin>>valor;
+
+    int res;
+    res=buscaBinaria(vetor,n,valor);
+    if (res==-1)
+		cout << "O valor procurado não foi encontrado.";
+	else
+		cout << "O valor procurado encontra-se na posição " << res;
+
+    return 0;
+}
